@@ -14,6 +14,7 @@
                         </div>
                     @endif
                     <div class="row">
+                        <h1>Branch One</h1>
                         <div class="col-sm">
                             <h5>Total Customer: {{  $getCustomerCountData[0]->total_customer_count??'0' }}</h5>
                            
@@ -23,6 +24,20 @@
                         </div>
                         <div class="col-sm">
                             <h5>Total Female Customer: {{  $getCustomerCountData[0]->total_female_customer_count??'0' }}</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h1>Branch Two</h1>
+                        <div class="col-sm">
+                            <h5>Total Customer: {{  $getCustomerCountData[1]->total_customer_count??'0' }}</h5>
+                           
+                        </div>
+                        <div class="col-sm">
+                            <h5>Total Male Customer: {{  $getCustomerCountData[1]->total_male_customer_count??'0' }}</h5>
+                        </div>
+                        <div class="col-sm">
+                            <h5>Total Female Customer: {{  $getCustomerCountData[1]->total_female_customer_count??'0' }}</h5>
                         </div>
                     </div>
 

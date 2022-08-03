@@ -19,3 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/customers/index', [CustomersImportController::class, 'customersList']);
+Route::post('/customers/create',[CustomersImportController::class, 'createCustomer']);

@@ -8,12 +8,21 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\withHeadingRow;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Events\AfterImport;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\RegistersEventListeners;
+
+use App\Mail\NotifyAfterImportMail;
+use Illuminate\Support\Facades\Mail;
 
 class CustomersImport implements 
     ToModel, 
     withHeadingRow,
     WithChunkReading,
+    ShouldQueue
+    , WithEvents
 {
+    use RegistersEventListeners;
     /**
     * @param array $row
     *
@@ -36,5 +45,9 @@ class CustomersImport implements
         return 1000;
     }
 
+    public static function afterImport(AfterImport $event)
+    { 
+        Mail::to('info@gmail.com')->later(now()->addSecond(30), new NotifyAfterImportMail());
+    }
 
 }

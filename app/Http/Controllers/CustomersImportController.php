@@ -6,11 +6,15 @@ use App\Imports\CustomersImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Customer;
-use Validator;
-use Illuminate\Support\Facades\DB;
 
 class CustomersImportController extends Controller
 {
+    public function index()
+    {   
+        $customers = Customer::paginate(10);
+        return view('customers.index', compact(['customers', 'getCustomerCountData']));
+    }
+
     public function show()
     {
         return view('customers.import');

@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/customers/index', [CustomersImportController::class, 'index'])->name('customers.index');
 Route::get('/customers/import', [CustomersImportController::class, 'show'])->name('customers.show');
 Route::post('/customers/import', [CustomersImportController::class, 'store'])->name('customers.store');
 

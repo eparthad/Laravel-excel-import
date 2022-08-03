@@ -7,13 +7,12 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\withHeadingRow;
-
-use App\Mail\NotifyAfterImportMail;
-use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
 class CustomersImport implements 
     ToModel, 
-    withHeadingRow
+    withHeadingRow,
+    WithChunkReading,
 {
     /**
     * @param array $row
@@ -32,6 +31,10 @@ class CustomersImport implements
         ]);
     }
  
-   
+    public function chunkSize(): int
+    {
+        return 1000;
+    }
+
 
 }
